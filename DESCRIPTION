@@ -5,6 +5,8 @@ Version: 0.0.1
 Date: 2017-05-02
 Author: Finn Sandø
 Maintainer: Finn Sandø <fs@3q.dk>
-Depends: R (>= 3.0)
+Depends:
+    R (>= 3.0)
 Description: Support package for the ENPADASI project
 License: LGPLv3+
+RoxygenNote: 5.0.1
