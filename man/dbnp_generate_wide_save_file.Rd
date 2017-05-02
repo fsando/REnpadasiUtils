@@ -2,13 +2,14 @@
 % Please edit documentation in R/dbnp_generate_wide_save_file.R
 \name{dbnp_generate_wide_save_file}
 \alias{dbnp_generate_wide_save_file}
-\title{Generate special format data file for upload to dbNp Phenotyp Database}
+\title{Generate file specifically formatted for import into dbNp Phenotype Database}
 \usage{
 dbnp_generate_wide_save_file(x, id_var, treat_var, visit_var, time_var,
-  visit_units = "weeks", time_units = "minutes", exclude_vars = NULL,
-  file = "", sep = ",", dec = ".", rename_id = TRUE)
+  visit_units = "weeks", time_units = "minutes", include_vars = NULL,
+  exclude_vars = NULL, file = "", sep = ",", dec = ".",
+  rename_id = TRUE)
 }
 \description{
-Generate special format data file for upload to dbNp Phenotyp Database
+Generate file specifically formatted for import into dbNp Phenotype Database
 }
 
