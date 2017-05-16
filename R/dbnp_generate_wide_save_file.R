@@ -16,6 +16,28 @@ dbnp_generate_wide_save_file <- function(
       ,rename_id=TRUE
   ) {
   
+  if(any(is.na(x[,id_var]))) {
+    stop("Some IDs are missing or invalid. Please check your data")
+  }
+  
+  if(any(is.na(x[,visit_var]))) {
+    stop("Some visits are missing or invalid. Please check your data")
+  }
+  
+  if(any(is.na(x[,treat_var]))) {
+    stop("Some treatment values are missing or invalid. Please check your data")
+  }
+  
+  if(any(is.na(x[,time_var]))) {
+    stop("Some time values are missing or invalid. Please check your data")
+  }
+  
+  ## validate uniqueness
+  check_design <- paste0(x[,id_var],x[,visit_var],x[,time_var],x[,treat_var])
+  if(any(table(check_design)>1)) {
+    stop("Design mismatch between ID, visit, time and treatment. Please check your data")
+  }
+  
   visits <- sort(unique(x[,visit_var]))
   treatments <- sort(unique(x[,treat_var]))
   times <- sort(unique(x[,time_var]))
@@ -44,7 +66,12 @@ dbnp_generate_wide_save_file <- function(
   ## combine visits and times into one set of times
   x[,"__INTERNAL__time_names"] <- sapply(time_converter(x[,visit_var],visit_units) + time_converter(x[,time_var],time_units),time_create)
 
-  ## wide format number of columns: visits_times * treatments * measurements + subject_id
+  if(any(is.na(x[,"__INTERNAL__time_names"]))) {
+    stop("Some time points are missing or invalid. Please check your data")
+  }
+  
+
+  ## wide format number of columns: visits * times * treatments * measurements + subject_id
   ncol <- length(time_names) * length(measure_varnames) * length(treatments) + 1
   ## number of rows (1 row per subject)
   nrow <- length(ids)
@@ -55,8 +82,11 @@ dbnp_generate_wide_save_file <- function(
   }
 
   ## initialize idx-vars
+  ## time indicator
   vt <- 1
+  ## treatment indicator
   m <- 1
+  ## row indicator
   row <- 1
   
   ## empty data.frame to collect restructured data
