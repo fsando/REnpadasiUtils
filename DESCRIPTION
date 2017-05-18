@@ -1,3 +1,4 @@
+Encoding: utf8
 Package: REnpadasiUtils
 Type: Package
 Title: R utilities for the ENPADASI project
@@ -9,4 +10,4 @@ Depends:
     R (>= 3.0)
 Description: Support package for the ENPADASI project
 License: LGPLv3+
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
