@@ -59,9 +59,7 @@ validate_dbnp_features <- function(feature_file,data_file,fsep=",",dsep=",",chec
   ## any varnames not in feature list - problematic
   if(any(!(dnames %in% feature_names))) {
     dname_miss <- dnames[which(!(dnames %in% feature_names))]
-    print(dname_miss)
     dname_miss_df <- as.data.frame(list(varnames=dname_miss),stringsAsFactors=FALSE)
-    print(head(dname_miss_df))
     write.csv2(dname_miss_df,paste0(DATA_FILE_BASE_PATH,"varnames_not_in_features.csv"),row.names=FALSE,na="")
     cat("Some variable names are not described in the the feature file. Missing variable names have been saved to '",paste0(DATA_FILE_BASE_PATH,"varnames_not_in_features.csv"),"'\n",sep="")
   }
