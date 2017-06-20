@@ -143,9 +143,9 @@ dbnp_generate_wide_save_file <- function(
   }
   
   if(nchar(file)>0) {
-    write.table(rbind(out$vheader),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,dec=dec,quote = TRUE)
-    write.table(rbind(out$theader),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,append = TRUE,dec=dec)
-    write.table(rbind(out$data),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,append = TRUE,dec=dec)
+    write.table(rbind(out$vheader),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,dec=dec,quote = FALSE)
+    write.table(rbind(out$theader),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,append = FALSE,dec=dec)
+    write.table(rbind(out$data),file=file,sep=sep,col.names = FALSE,na="",row.names = FALSE,append = FALSE,dec=dec)
     c("File saved as '",file,",\n")
   } else {
     warning("No filename")
